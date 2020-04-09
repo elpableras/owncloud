@@ -542,10 +542,10 @@
       "name": "OWNCLOUD_IMAGE_NAME",
       "displayName": "ownCloud Docker Image",
       "description": "The name of the ownCloud Docker image used within the OpenShift deployment.",
-      "value": "docker.io/owncloud/server:10.1.1"
+      "value": "gitlab-registry.cern.ch/webservices/ecm/owncloud:10.3"
     }
   ],
   "labels": {
-    "template": "owncloud-ephemeral-template"
+    "template": "owncloud-pablogo-template"
   }
 }
