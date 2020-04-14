@@ -31,16 +31,16 @@ RUN echo "\nProxyPass /sites/ https://test-cernbox.web.cern.ch/index.php/apps/cm
   >> "${CONF_APACHE2}/apache2.conf"
 
 # Social Login
-RUN git clone https://github.com/owncloud/sociallogin.git ./apps
+WORKDIR /var/www/owncloud/apps
+RUN git clone https://github.com/owncloud/sociallogin.git
 
-# Rainloop Email
-RUN wget http://www.rainloop.net/repository/owncloud/rainloop.zip ./apps-external
-RUN unzip ./apps-external/rainloop.zip
-COPY ./apps-external/rainloop ./apps/rainloop
-RUN rm -rf ./apps-external/rainloop.zip
+# Rainloop Email, ownCloud 9.2 or lower is required.
+RUN wget http://www.rainloop.net/repository/owncloud/rainloop.zip
+RUN unzip rainloop.zip
+RUN rm -rf rainloop.zip
 # Grant read/write permissions required by the application:
-RUN chown -R www-data:www-data ./apps/rainloop
-RUN cd ./apps/rainloop
+RUN chown -R www-data:www-data rainloop
+RUN cd rainloop
 RUN find . -type d -exec chmod 755 {} \;
 RUN find . -type f -exec chmod 644 {} \;
 
